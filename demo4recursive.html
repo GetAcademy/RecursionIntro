@@ -12,17 +12,17 @@
     <script>
         function primeFactorize(number) {
             let startTime = new Date().getTime();
-            const factors = primeFactorizeImpl(number, 2, []);
+            const factors = primeFactorizeImpl(number);
             let endTime = new Date().getTime();
             let millis = endTime - startTime;
             return { factors, millis };
         }
 
-        function primeFactorizeImpl(number, factor, factors) {
-            if (factor > Math.ceil(Math.sqrt(number))) return [...factors, number];
-            return number % factor === 0
-                ? primeFactorizeImpl(number / factor, factor, [...factors, factor])
-                : primeFactorizeImpl(number, factor + 1, factors);
+        function primeFactorizeImpl(number, factor = 2, factors = []) {
+            const isPrime = factor > Math.ceil(Math.sqrt(number));
+            return isPrime ? [...factors, number] :
+                number % factor === 0 ? primeFactorizeImpl(number / factor, factor, [...factors, factor])
+                    : primeFactorizeImpl(number, factor + 1, factors);
         }
     </script>
 
