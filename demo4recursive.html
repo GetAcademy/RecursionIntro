@@ -12,36 +12,18 @@
     <script>
         function primeFactorize(number) {
             let startTime = new Date().getTime();
-            const factors = primeFactorizeImpl(number);
+            const factors = primeFactorizeImpl(number, 2, []);
             let endTime = new Date().getTime();
             let millis = endTime - startTime;
             return { factors, millis };
         }
 
-
-        let startTime = new Date().getTime();
-        let number = 6726212345678;
-        let limit = Math.ceil(Math.sqrt(number));
-        let factor = 2;
-        let factors = [];
-        while (number > 1) {
-            if (number % factor === 0) {
-                factors.push(factor);
-                number /= factor;
-                limit = Math.ceil(Math.sqrt(number));
-            } else {
-                factor++;
-                if (factor > limit) {
-                    factors.push(number);
-                    break;
-                }
-            }
+        function primeFactorizeImpl(number, factor, factors) {
+            if (factor > Math.ceil(Math.sqrt(number))) return [...factors, number];
+            return number % factor === 0
+                ? primeFactorizeImpl(number / factor, factor, [...factors, factor])
+                : primeFactorizeImpl(number, factor + 1, factors);
         }
-        console.log(factors.join('×'));
-        let endTime = new Date().getTime();
-        let millis = endTime - startTime;
-        console.log(`${millis}ms`)
-
     </script>
 
 </body>
