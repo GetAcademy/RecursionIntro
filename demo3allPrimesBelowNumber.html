@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let startTime = new Date().getTime();
+
+        let maxNumber = 6726212345678;
+        let primes = [];
+
+        for(let number = 2; number <= maxNumber; number++){
+            if(isPrime(number, primes)){
+                primes.push(number);
+            }
+        }
+
+        function isPrime
+        let factor = 2;
+        let factors = [];
+        while (number > 1) {
+            if (number % factor === 0) {
+                factors.push(factor);
+                number /= factor;
+            } else {
+                factor++;
+            }
+        }
+        console.log(factors.join('×'));
+
+
+        let endTime = new Date().getTime();
+        let millis = endTime-startTime;
+        console.log(`${millis}ms`)
+
+    </script>
+
+</body>
+
+</html>
