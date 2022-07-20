@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <script>
+        function demoIterationWithForLoop(startValue, limit, delta) {
+            for (let i = startValue; i < limit; i += delta) {
+                console.log(i);
+            }
+        }
+
+        function demoIterationWithRecursion(value = 0, limit, delta) {
+            if (value >= limit) return;
+            console.log(value);
+            demoIterationWithRecursion(value + delta, limit, delta);
+        }
+    </script>
+</body>
+
+</html>
