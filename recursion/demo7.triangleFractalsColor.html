@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="800" height="800"></canvas>
+    <script>
+        const draw = document.getElementById('myCanvas')
+            .getContext("2d");
+        draw.translate(0.5, 0.5);
+
+        function drawTriangleFractal(p1, p2, p3, limit) {
+            drawTriangle(p1, p2, p3, 255-42 * limit);
+            if (limit === 0) return;
+            drawTriangleFractal(p1, middle(p1, p2), middle(p1, p3), limit - 1);
+            drawTriangleFractal(middle(p1, p2), p2, middle(p2, p3), limit - 1);
+            drawTriangleFractal(middle(p2, p3), p3, middle(p1, p3), limit - 1);
+        }
+
+        function middle(p1, p2) {
+            return { x: mean(p1.x, p2.x), y: mean(p1.y, p2.y) };
+        }
+
+        function mean(a, b) {
+            return (a + b) / 2;
+        }
+
+        function drawTriangle(p1, p2, p3, greenLevel) {
+            draw.beginPath();
+            draw.fillStyle = `rgb(255,${greenLevel},0)`;
+            draw.moveTo(p1.x, p1.y);
+            draw.lineTo(p2.x, p2.y);
+            draw.lineTo(p3.x, p3.y);
+            draw.lineTo(p1.x, p1.y);
+            draw.fill();
+            draw.closePath();
+        }
+
+        // drawTriangleFractal({x:100, y:100},{x:500, y:100},{x:300, y:500}, 1)
+
+    </script>
+</body>
+
+</html>
