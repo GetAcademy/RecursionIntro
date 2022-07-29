@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <script>
+        const people = [
+            { id: 1, firstName: "Sverre Magnus", birthYear: 2005, mother: 4, father: 3 },
+            { id: 2, firstName: "Ingrid Alexandra", birthYear: 2004, birthYear: 2005, mother: 4, father: 3 },
+            { id: 3, firstName: "Haakon Magnus", birthYear: 1973, birthYear: 2005, mother: 7, father: 6 },
+            { id: 4, firstName: "Mette-Marit", birthYear: 1973 },
+            { id: 5, firstName: "Marius", lastName: "Borg Høiby", birthYear: 1997, mother: 4 },
+            { id: 6, firstName: "Harald", birthYear: 1937, father: 8 },
+            { id: 7, firstName: "Sonja", birthYear: 1937 },
+            { id: 8, firstName: "Olav", birthYear: 1903 },
+        ];
+
+        function findImmediateDescendants(personId) {
+            return people.filter(p => p.mother === personId || p.father === personId);
+        }
+
+        function findDescendants(personId) {
+            const immediateDescendants = people.filter(p => p.mother === personId || p.father === personId);
+            return immediateDescendants.concat(...immediateDescendants.map(p=>findDescendants(p.id)));                                             
+        }
+    </script>
+</body>
+
+</html>
