@@ -11,28 +11,40 @@
 <body>
     <script>
         let startTime = new Date().getTime();
-        let number = 6726212345678;
-        let limit = Math.ceil(Math.sqrt(number));
-        let factor = 2;
-        let factors = [];
-        while (number > 1) {
-            if (number % factor === 0) {
-                factors.push(factor);
-                number /= factor;
-                limit = Math.ceil(Math.sqrt(number));
-            } else {
-                factor++;
-                if (factor > limit) {
-                    factors.push(number);
-                    break;
-                }
+
+        let maxNumber = 10000;
+        let primes = [];
+
+        for (let number = 2; number <= maxNumber; number++) {
+            if (isPrime(number, primes)) {
+                primes.push(number);
             }
         }
-        console.log(factors.join('×'));
+
+        console.log(primes);
         let endTime = new Date().getTime();
         let millis = endTime - startTime;
-        console.log(`${millis}ms`)
+        console.log(`${millis}ms`);
 
+        function isPrime(number, primes) {
+            let factor = 2;
+            let factors = [];
+            let limit = Math.ceil(Math.sqrt(number));
+            while (number > 1) {
+                if (number % factor === 0) {
+                    factors.push(factor);
+                    number /= factor;
+                    limit = Math.ceil(Math.sqrt(number));
+                } else {
+                    factor++;
+                    if (factor > limit) {
+                        factors.push(number);
+                        break;
+                    }
+                }
+            }
+            return factors.length === 1;
+        }
     </script>
 
 </body>
