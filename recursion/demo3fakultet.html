@@ -17,7 +17,17 @@
             return result;
         }
 
-        const factorialRec = n => n === 1 ? 1 : n * factorialRec(n - 1);
+        function factorialRec(n) {
+            if (n === 1) return 1;
+            return n * factorialRec(n - 1);
+        }
+
+        const factorialRec2 = function (n) {
+            if (n === 1) return 1;
+            return n * factorialRec(n - 1);
+        }
+
+        const factorialRecLambda = n => n === 1 ? 1 : n * factorialRec(n - 1);
     </script>
 </body>
 

@@ -23,9 +23,31 @@
             return people.filter(p => p.mother === personId || p.father === personId);
         }
 
+        function findImmediateDescendants2(personId) {
+            const descendands = [];
+            for (let person of people) {
+                if (person.mother === personId || person.father === personId) {
+                    descendands.push(person);
+                }
+            }
+            return descendands;
+        }
+
         function findDescendants(personId) {
-            const immediateDescendants = people.filter(p => p.mother === personId || p.father === personId);
-            return immediateDescendants.concat(...immediateDescendants.map(p=>findDescendants(p.id)));                                             
+            const children = people.filter(
+                p => p.mother === personId || p.father === personId);
+            return children
+                .concat(...children.map(p => findDescendants(p.id)));
+        }
+
+        function findDescendants2(personId) {
+            const children = people.filter(p => p.mother === personId || p.father === personId);
+            let descendands = [];
+            for (let child of children) {
+                const childrenOfChild = findDescendants2(child.id);
+                descendands.push(...childrenOfChild);
+            }
+            return descendands.concat(children);
         }
     </script>
 </body>
