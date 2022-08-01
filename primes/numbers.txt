@@ -1,0 +1,9 @@
+24=6*4
+24=6*2*2
+24=2*2*2*3
+
+Primtall?
+152 = nei - partall, alle partall er delelig på 2
+369 = nei, 123*3, delelig på 3. 
+575 = nei, delelig på 5
+147 = nei, delelig på 7 
