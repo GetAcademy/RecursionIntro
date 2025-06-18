@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const startsWith = (start, text) => text.toLowerCase().startsWith(start.toLowerCase());
+
+        const findMatchingNamesRecursive = (searchText, node = royalFamily) =>
+            node.children
+                .flatMap(child => findMatchingNamesRecursive(searchText, child))
+                .concat(startsWith(searchText, node.name) ? [node] : []);
+
+        function findMatchingNamesIterative(root, searchText) {
+            const matches = [];
+            const text = searchText.toLowerCase();
+            const stack = [root];
+
+            while (stack.length > 0) {
+                const current = stack.pop();
+
+                if (current.name.toLowerCase().startsWith(text)) {
+                    matches.push(current);
+                }
+
+                // Legg til children på stacken
+                for (let i = current.children.length - 1; i >= 0; i--) {
+                    stack.push(current.children[i]);
+                }
+            }
+
+            return matches;
+        }
+
+
+        const royalFamily = {
+            name: "Charles",
+            title: "King",
+            children: [
+                {
+                    name: "William",
+                    title: "Prince of Wales",
+                    children: [
+                        {
+                            name: "George",
+                            title: "Prince",
+                            children: []
+                        },
+                        {
+                            name: "Charlotte",
+                            title: "Princess",
+                            children: []
+                        },
+                        {
+                            name: "Louis",
+                            title: "Prince",
+                            children: []
+                        }
+                    ]
+                },
+                {
+                    name: "Harry",
+                    title: "Duke of Sussex",
+                    children: [
+                        {
+                            name: "Archie",
+                            title: "Master",
+                            children: []
+                        },
+                        {
+                            name: "Lilibet",
+                            title: "Miss",
+                            children: []
+                        }
+                    ]
+                }
+            ]
+        };
+
+    </script>
+</body>
+
+</html>
