@@ -8,6 +8,15 @@
 
 <body>
     <script>
+        /*
+            5! = 5x4x3x2x1 = 120
+            5! = 5x4!
+            4! = 4x3x2x1 = 24
+            3! = 3x2x1 = 6
+            2! = 2x1 = 2
+            1! = 1
+        */
+
         function factorialImp(n) {
             let result = 1;
             while (n > 1) {
@@ -24,10 +33,10 @@
 
         const factorialRec2 = function (n) {
             if (n === 1) return 1;
-            return n * factorialRec(n - 1);
+            return n * factorialRec2(n - 1);
         }
 
-        const factorialRecLambda = n => n === 1 ? 1 : n * factorialRec(n - 1);
+        const factorial = n => n === 1 ? 1 : n * factorial(n - 1);
     </script>
 </body>
 

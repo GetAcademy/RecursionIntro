@@ -34,8 +34,7 @@
         }
 
         function findDescendants(personId) {
-            const children = people.filter(
-                p => p.mother === personId || p.father === personId);
+            const children = people.filter(p => p.mother === personId || p.father === personId);
             return children
                 .concat(...children.map(p => findDescendants(p.id)));
         }
