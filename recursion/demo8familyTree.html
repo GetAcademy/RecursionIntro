@@ -16,24 +16,16 @@
                 .flatMap(child => findMatchingNamesRecursive(searchText, child))
                 .concat(startsWith(searchText, node.name) ? [node] : []);
 
-        function findMatchingNamesIterative(root, searchText) {
+        function findMatchingNamesIterative(searchText, node = royalFamily) {
             const matches = [];
-            const text = searchText.toLowerCase();
-            const stack = [root];
-
+            const stack = [node];
             while (stack.length > 0) {
                 const current = stack.pop();
-
-                if (current.name.toLowerCase().startsWith(text)) {
+                if (startsWith(searchText, current.name)) {
                     matches.push(current);
                 }
-
-                // Legg til children på stacken
-                for (let i = current.children.length - 1; i >= 0; i--) {
-                    stack.push(current.children[i]);
-                }
+                stack.push(...current.children);
             }
-
             return matches;
         }
 
